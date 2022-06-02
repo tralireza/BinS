@@ -32,7 +32,7 @@ func kthSmallestPrimeFraction(arr []int, k int) []int {
 			}
 
 			x += len(arr) - d
-			if xRatio.n == -1 && xRatio.d == -1 || xRatio.Ratio(arr) < (R{n, d}).Ratio(arr) {
+			if xRatio.Ratio(arr) < (R{n, d}).Ratio(arr) {
 				xRatio = R{n, d}
 			}
 		}
@@ -49,4 +49,31 @@ func kthSmallestPrimeFraction(arr []int, k int) []int {
 	}
 
 	return []int{}
+}
+
+// 1208m Get Equal Substrings Within Budget
+func equalSubstring(s string, t string, maxCost int) int {
+	Cost := make([]int, len(s))
+	for i := 0; i < len(s); i++ {
+		Cost[i] = int(s[i]) - int(t[i])
+		if Cost[i] < 0 {
+			Cost[i] *= -1
+		}
+	}
+
+	lMax := 0
+
+	curCost, l := 0, 0
+	for r := range len(s) {
+		curCost += Cost[r]
+		for curCost > maxCost {
+			curCost -= Cost[l]
+			l++
+		}
+
+		lMax = max(lMax, r-l+1)
+		log.Printf(" -> %d", lMax)
+	}
+
+	return lMax
 }
