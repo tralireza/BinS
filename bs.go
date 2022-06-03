@@ -9,11 +9,47 @@ func init() {
 	log.Print("> Binary Search")
 }
 
+// 209m Minimum Size Subarray Size
+func minSubArrayLen(target int, nums []int) int {
+	lMin := len(nums) + 1
+
+	l, curSum := 0, 0
+	for r := range nums {
+		curSum += nums[r]
+		for curSum >= target {
+			lMin = min(lMin, r-l+1)
+			curSum -= nums[l]
+			l++
+		}
+	}
+
+	if lMin > len(nums) {
+		return 0
+	}
+	return lMin
+}
+
+// 240m Search a 2D Matrix II
+func searchMatrix(matrix [][]int, target int) bool {
+	r, c := 0, len(matrix[0])-1
+	for r < len(matrix) && c >= 0 {
+		if matrix[r][c] == target {
+			return true
+		}
+		if matrix[r][c] > target {
+			c--
+		} else {
+			r++
+		}
+	}
+	return false
+}
+
+// 786m K-th Smallest Prime Fraction
 type R786 struct{ n, d int }
 
 func (o R786) Ratio(arr []int) float64 { return float64(arr[o.n]) / float64(arr[o.d]) }
 
-// 786m K-th Smallest Prime Fraction
 func kthSmallestPrimeFraction(arr []int, k int) []int {
 	type R = R786
 
