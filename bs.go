@@ -45,6 +45,33 @@ func searchMatrix(matrix [][]int, target int) bool {
 	return false
 }
 
+// 633m Sum of Square Numbers
+func judgeSquareSum(c int) bool {
+	// c ?= a^2 + b%2
+	sqrt := 1
+	for ; sqrt*sqrt <= c; sqrt++ {
+	}
+	sqrt--
+
+	for a := 0; a <= sqrt; a++ {
+		l, r := 0, c-a*a
+		for l < r {
+			m := l + (r-l)>>1
+			if m*m+a*a >= c {
+				r = m
+			} else {
+				l = m + 1
+			}
+		}
+
+		if l*l+a*a == c {
+			return true
+		}
+	}
+
+	return false
+}
+
 // 786m K-th Smallest Prime Fraction
 type R786 struct{ n, d int }
 

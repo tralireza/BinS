@@ -37,6 +37,13 @@ func Test240(t *testing.T) {
 	log.Print("true ?= ", searchMatrix([][]int{{3, 3, 8, 13, 13, 18}, {4, 5, 11, 13, 18, 20}, {9, 9, 14, 15, 23, 23}, {13, 18, 22, 22, 25, 27}, {18, 22, 23, 28, 30, 33}, {21, 25, 28, 30, 35, 35}, {24, 25, 33, 36, 37, 40}}, 21))
 }
 
+// 633m Sum of Square Numbers
+func Test633(t *testing.T) {
+	log.Print("true ?= ", judgeSquareSum(5))
+	log.Print("false ?= ", judgeSquareSum(3))
+	log.Print("false ?= ", judgeSquareSum(999999999))
+}
+
 // 786m K-th Smallest Prime Fraction
 func Test786(t *testing.T) {
 	log.Print("[2 5] ?= ", kthSmallestPrimeFraction([]int{1, 2, 3, 5}, 3))
