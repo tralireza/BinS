@@ -58,3 +58,10 @@ func Test1208(t *testing.T) {
 	log.Print("1 ?= ", equalSubstring("abcd", "cdef", 3))
 	log.Print("2 ?= ", equalSubstring("abce", "adce", 0))
 }
+
+// 826m Most Profit Assigning Work
+func Test826(t *testing.T) {
+	log.Print("100 ?= ", maxProfitAssignment([]int{2, 4, 6, 8, 10}, []int{10, 20, 30, 40, 50}, []int{4, 5, 6, 7}))
+	log.Print("180 ?= ", maxProfitAssignment([]int{2, 4, 4, 7, 10}, []int{10, 20, 30, 40, 50}, []int{0, 4, 5, 6, 7, 11}))
+	log.Print("0 ?= ", maxProfitAssignment([]int{85, 47, 57}, []int{24, 66, 99}, []int{40, 25, 25}))
+}

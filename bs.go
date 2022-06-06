@@ -2,6 +2,7 @@ package BinS
 
 import (
 	"log"
+	"slices"
 )
 
 func init() {
@@ -139,4 +140,37 @@ func equalSubstring(s string, t string, maxCost int) int {
 	}
 
 	return lMax
+}
+
+// 826m Most Profit Assigning Work
+func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {
+	type Work struct{ diff, profit int }
+
+	W := make([]Work, len(profit))
+	for i := range W {
+		W[i] = Work{difficulty[i], profit[i]}
+	}
+	slices.SortFunc(W, func(x, y Work) int { return x.diff - y.diff })
+
+	pMax := make([]Work, len(W)+1)
+	for i := range W {
+		pMax[i+1] = W[i]
+		pMax[i+1].profit = max(W[i].profit, pMax[i+1].profit)
+	}
+	log.Print(pMax)
+
+	x := 0
+	for _, w := range worker {
+		l, r := 0, len(pMax)
+		for l < r {
+			m := l + (r-l)>>1
+			if pMax[m].diff > w {
+				r = m
+			} else {
+				l = m + 1
+			}
+		}
+		x += pMax[l-1].profit
+	}
+	return x
 }
