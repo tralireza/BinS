@@ -174,3 +174,33 @@ func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {
 	}
 	return x
 }
+
+// 1552m Magnetic Force Between Two Balls
+func maxDistance(position []int, m int) int {
+	slices.Sort(position)
+
+	CheckForce := func(f int) bool {
+		prv, p := 0, 1
+		for range m - 1 {
+			for position[p]-position[prv] < f {
+				p++
+				if p == len(position) {
+					return false
+				}
+			}
+			prv = p
+		}
+		return true
+	}
+
+	l, r := 1, (position[len(position)-1]-position[0])/(m-1)
+	for l < r {
+		m := l + (r-l+1)>>1 // <* Right-Mid *>
+		if CheckForce(m) {  // Maximize <m> :: for when CheckForce -> true
+			l = m
+		} else {
+			r = m - 1
+		}
+	}
+	return l
+}

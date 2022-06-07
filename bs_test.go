@@ -65,3 +65,10 @@ func Test826(t *testing.T) {
 	log.Print("180 ?= ", maxProfitAssignment([]int{2, 4, 4, 7, 10}, []int{10, 20, 30, 40, 50}, []int{0, 4, 5, 6, 7, 11}))
 	log.Print("0 ?= ", maxProfitAssignment([]int{85, 47, 57}, []int{24, 66, 99}, []int{40, 25, 25}))
 }
+
+// 1552m Magnetic Force Between Two Balls
+func Test1552(t *testing.T) {
+	log.Print("3 ?= ", maxDistance([]int{1, 2, 3, 4, 7}, 3))
+	log.Print("999999999 ?= ", maxDistance([]int{5, 4, 3, 2, 1, 1000000000}, 2))
+	log.Print("5 ?= ", maxDistance([]int{79, 74, 57, 22}, 4))
+}
