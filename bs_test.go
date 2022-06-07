@@ -81,16 +81,16 @@ func Test1552(t *testing.T) {
 		return l
 	}
 	rBS := func(nums []int, k int) int {
-		l, r := 0, len(nums)
+		l, r := -1, len(nums)-1
 		for l < r {
-			m := l + (r-l)>>1
-			if nums[m] > k {
-				r = m
+			m := l + (r-l+1)>>1 // <* Right-Mid *>
+			if nums[m] <= k {   // Maximize m
+				l = m
 			} else {
-				l = m + 1
+				r = m - 1
 			}
 		}
-		return r - 1
+		return l
 	}
 
 	nums := []int{1, 2, 2, 5, 7, 8, 8}
