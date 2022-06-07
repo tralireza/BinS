@@ -68,6 +68,37 @@ func Test826(t *testing.T) {
 
 // 1552m Magnetic Force Between Two Balls
 func Test1552(t *testing.T) {
+	lBS := func(nums []int, k int) int {
+		l, r := 0, len(nums)
+		for l < r {
+			m := l + (r-l)>>1 // <* Left-Mid *>
+			if nums[m] >= k { // Minimize m :: for when "nums[m] >= k" is true
+				r = m
+			} else {
+				l = m + 1
+			}
+		}
+		return l
+	}
+	rBS := func(nums []int, k int) int {
+		l, r := 0, len(nums)
+		for l < r {
+			m := l + (r-l)>>1
+			if nums[m] > k {
+				r = m
+			} else {
+				l = m + 1
+			}
+		}
+		return r - 1
+	}
+
+	nums := []int{1, 2, 2, 5, 7, 8, 8}
+	log.Print(nums)
+	for _, k := range []int{0, 1, 2, 4, 8, 9} {
+		log.Printf("%d -> l: %d   r: %d", k, lBS(nums, k), rBS(nums, k))
+	}
+
 	log.Print("3 ?= ", maxDistance([]int{1, 2, 3, 4, 7}, 3))
 	log.Print("999999999 ?= ", maxDistance([]int{5, 4, 3, 2, 1, 1000000000}, 2))
 	log.Print("5 ?= ", maxDistance([]int{79, 74, 57, 22}, 4))
